@@ -25,7 +25,7 @@ contract EmergentEngineInstance is Ownable, Pausable, ReentrancyGuard {
 
   // ** ** **
   //
-  // EmergentEngineInstance is a proof-of-concept, decentralized, chain-native, state and computation engine built to power the metaverse
+  // EmergentEngineInstance.sol is a proof-of-concept, decentralized, chain-native, state and computation engine built to power the metaverse
   // Together we manifest emergent metaverse metaphysics from collective cryptonautic consciousness
   //
   // ** ** **
