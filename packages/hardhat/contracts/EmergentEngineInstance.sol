@@ -162,7 +162,7 @@ contract EmergentEngineInstance is Ownable, Pausable, ReentrancyGuard {
     return version;
   }
 
-  function getCodename () view public returns (uint) {
+  function getCodename () view public returns (string) {
     return codename;
   }
 
