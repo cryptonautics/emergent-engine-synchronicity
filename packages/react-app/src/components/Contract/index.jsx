@@ -1,9 +1,12 @@
 import { Card } from "antd";
 import React, { useMemo, useState } from "react";
 import { useContractExistsAtAddress, useContractLoader } from "eth-hooks";
+
 import Account from "../Account";
 import DisplayVariable from "./DisplayVariable";
 import FunctionForm from "./FunctionForm";
+import Address from "../Address";
+import Balance from "../Balance";
 
 const noContractDisplay = (
   <div>
@@ -69,8 +72,8 @@ export default function Contract({
 
   const displayedContractFunctions = useMemo(() => {
     const results = contract
-      ? Object.values(contract.interface.functions).filter(
-          fn => fn.type === "function" && !(show && show.indexOf(fn.name) < 0),
+      ? Object.entries(contract.interface.functions).filter(
+          fn => fn[1]["type"] === "function" && !(show && show.indexOf(fn[1]["name"]) < 0),
         )
       : [];
     return results;
@@ -79,20 +82,21 @@ export default function Contract({
   const [refreshRequired, triggerRefresh] = useState(false);
   const contractDisplay = displayedContractFunctions.map(contractFuncInfo => {
     const contractFunc =
-      contractFuncInfo.stateMutability === "view" || contractFuncInfo.stateMutability === "pure"
-        ? contract[contractFuncInfo.name]
-        : contract.connect(signer)[contractFuncInfo.name];
+      contractFuncInfo[1].stateMutability === "view" || contractFuncInfo[1].stateMutability === "pure"
+        ? contract[contractFuncInfo[0]]
+        : contract.connect(signer)[contractFuncInfo[0]];
 
     if (typeof contractFunc === "function") {
-      if (isQueryable(contractFuncInfo)) {
+      if (isQueryable(contractFuncInfo[1])) {
         // If there are no inputs, just display return value
         return (
           <DisplayVariable
-            key={contractFuncInfo.name}
+            key={contractFuncInfo[1].name}
             contractFunction={contractFunc}
-            functionInfo={contractFuncInfo}
+            functionInfo={contractFuncInfo[1]}
             refreshRequired={refreshRequired}
             triggerRefresh={triggerRefresh}
+            blockExplorer={blockExplorer}
           />
         );
       }
@@ -100,9 +104,9 @@ export default function Contract({
       // If there are inputs, display a form to allow users to provide these
       return (
         <FunctionForm
-          key={"FF" + contractFuncInfo.name}
+          key={"FF" + contractFuncInfo[0]}
           contractFunction={contractFunc}
-          functionInfo={contractFuncInfo}
+          functionInfo={contractFuncInfo[1]}
           provider={provider}
           gasPrice={gasPrice}
           triggerRefresh={triggerRefresh}
@@ -116,18 +120,11 @@ export default function Contract({
     <div style={{ margin: "auto", width: "70vw" }}>
       <Card
         title={
-          <div>
+          <div style={{fontSize:24}}>
             {name}
             <div style={{ float: "right" }}>
-              <Account
-                address={address}
-                localProvider={provider}
-                injectedProvider={provider}
-                mainnetProvider={provider}
-                price={price}
-                blockExplorer={blockExplorer}
-              />
-              {account}
+              <Address value={address}/>
+              <Balance address={address} provider={provider} price={price} />
             </div>
           </div>
         }
