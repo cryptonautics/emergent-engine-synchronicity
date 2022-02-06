@@ -1,0 +1,56 @@
+<template>
+<div>
+<p>Emergent Engine Showcase - Synchronicity</p>
+<canvas></canvas>
+</div>
+
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import {CustomModels} from "@/BabylonExamples/CustomModels"
+
+export default defineComponent({
+  name: 'BabylonExamples',
+  mounted(){
+    const canvas = document.querySelector("canvas")!;
+    new CustomModels(canvas);
+  }
+  
+});
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@100;700&display=swap');
+
+div {
+  width:150%;
+  height:150%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:none;
+}
+
+p {
+  color:white;
+  background:none;
+  margin-bottom:1rem;
+ font-family: 'Roboto Condensed';
+  font-weight: 400;
+  font-size:2rem;
+}
+
+canvas {
+  width:100%;
+  height:100%;
+  border:none;
+  outline:none;
+  box-shadow:8px 8px 10px -6px #000000;
+}
+
+
+
+</style>
