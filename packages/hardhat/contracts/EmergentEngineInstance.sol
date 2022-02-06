@@ -48,7 +48,7 @@ contract EmergentEngineInstance is Ownable, Pausable, ReentrancyGuard {
   //
 
   uint256 public constant version = 42;
-  string public constant codename = "Synchronicity";
+  string public constant codename = "synchronicity";
 
   //
   // Metaverse engine storage state follows
@@ -145,16 +145,32 @@ contract EmergentEngineInstance is Ownable, Pausable, ReentrancyGuard {
   mapping(uint => address) private posinaughtCryptonautTransformationDelta;
 
   //
+  // Constructor, fallback, and receive functions
+  //
+
+  constructor() payable {}
+
+  receive() external payable {}
+
+  fallback() external payable {}
+
+  //
+  // Metaverse engine storage retrieval functions follow
+  //
+
+  function getVersion () view public returns (uint) {
+    return version;
+  }
+
+  function getCodename () view public returns (uint) {
+    return codename;
+  }
+
+  //
   // Metaverse engine storage mutation functions follow
   //
 
   
 
-  constructor() payable {
-  }
-
-  // to support receiving ETH by default
-  receive() external payable {}
-
-  fallback() external payable {}
+  
 }
