@@ -158,11 +158,11 @@ contract EmergentEngineInstance is Ownable, Pausable, ReentrancyGuard {
   // Metaverse engine storage retrieval functions follow
   //
 
-  function getVersion () view public returns (uint storage) {
+  function getVersion () pure public returns (uint) {
     return version;
   }
 
-  function getCodename () view public returns (string storage) {
+  function getCodename () pure public returns (string memory) {
     return codename;
   }
 
