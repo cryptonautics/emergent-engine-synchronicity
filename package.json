@@ -68,6 +68,7 @@
     ]
   },
   "devDependencies": {
+    "@nomiclabs/hardhat-etherscan": "^3.0.0",
     "@openzeppelin/contracts": "^4.4.2",
     "husky": "^7.0.2"
   }
