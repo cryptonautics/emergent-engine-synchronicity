@@ -170,6 +170,46 @@ contract EmergentEngineInstance is Ownable, Pausable, ReentrancyGuard {
   // Metaverse engine storage mutation functions follow
   //
 
+  //
+  // 'cryptonautPosinaughtTransformations' retrieval
+  //
+
+  function getPosinaughtFromCryptonautAlpha (address _cryptonaut) view public returns (uint) {
+    return cryptonautPosinaughtTransformationAlpha[_cryptonaut];
+  }
+
+  function getPosinaughtFromCryptonautBeta (address _cryptonaut) view public returns (uint) {
+    return cryptonautPosinaughtTransformationBeta[_cryptonaut];
+  }
+
+  function getPosinaughtFromCryptonautGamma (address _cryptonaut) view public returns (uint) {
+    return cryptonautPosinaughtTransformationGamma[_cryptonaut];
+  }
+
+  function getPosinaughtFromCryptonautDelta (address _cryptonaut) view public returns (uint) {
+    return cryptonautPosinaughtTransformationDelta[_cryptonaut];
+  }
+
+  //
+  // 'posinaughtCryptonautTransformations' retrieval
+  //
+
+  function getCryptonautFromPosinaughtAlpha (uint _posinaut) view public returns (address) {
+    return posinaughtCryptonautTransformationAlpha[_posinaut];
+  }
+
+  function getCryptonautFromPosinaughtBeta (uint _posinaut) view public returns (address) {
+    return posinaughtCryptonautTransformationAlpha[_posinaut];
+  }
+
+  function getCryptonautFromPosinaughtGamma (uint _posinaut) view public returns (address) {
+    return posinaughtCryptonautTransformationAlpha[_posinaut];
+  }
+
+  function getCryptonautFromPosinaughtDelta (uint _posinaut) view public returns (address) {
+    return posinaughtCryptonautTransformationAlpha[_posinaut];
+  }
+
   
 
   
