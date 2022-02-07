@@ -19,41 +19,52 @@ import abi from '../contracts/mana'
 
 
 ///////////////////////////////////////////////
-// FUN initiateRopstenMANATransaction()
+// GLB Global scene state
 ///////////////////////////////////////////////
 
-function initiateRopstenMANATransaction() {
+var emergentEngineInstanceButtonState = -42
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////
+// FUN mutatePolygonEmergentEngineInstance()
+///////////////////////////////////////////////
+
+function mutatePolygonEmergentEngineInstance() {
 
   executeTask(async () => {
 
     try {
   
       // Define contract address constants
-      // https://ropsten.etherscan.io/address/0x2a8fd99c19271f4f04b1b7b9c4f7cf264b626edb
-      const ROPSTEN_MANA_ADDRESS = "0x2a8fd99c19271f4f04b1b7b9c4f7cf264b626edb"
+      // https://mumbai.polygonscan.com/address/0xfd0a1d32683080249F7dbB00b2FFE2140404215A
+      const POLYGON_EMERGENT_ENGINE_INSTANCE_ADDRESS = "0xfd0a1d32683080249F7dbB00b2FFE2140404215A"
   
       // Setup steps explained in the section above
       //
       const provider = await getProvider()
       //const provider = givenProvider()
       if (provider == null) {
-        log("Provider (provider) is null in initiateRopstenMANATransaction()")
+        log("Provider (provider) is null in mutatePolygonEmergentEngineInstance()")
       }
       //
       const requestManager = new RequestManager(provider)
       const factory = new ContractFactory(requestManager, abi)
       const contract = (await factory.at(
-        ROPSTEN_MANA_ADDRESS
+        POLYGON_EMERGENT_ENGINE_INSTANCE_ADDRESS
       )) as any
       const playerAddress = await getUserAccount()
       log("Player address (playerAddress): ", playerAddress)
   
       // Perform a function from the contract
-      const res = await contract.setBalance(
-        // to (address) parameter
-        "0xaFA48Fad27C7cAB28dC6E970E4BFda7F7c8D60Fb",
-        // amount (uint256) parameter
-        100,
+      const res = await contract.setPosinaughtUsingCryptonautDelta(
+        // _cryptonaut (address) parameter
+        playerAddress,
+        // _newPosinaut (uint) parameter
+        84,
         // transaction-specific metadata
         {
           // address originating the transaction
@@ -83,19 +94,19 @@ function initiateRopstenMANATransaction() {
 
 
 ///////////////////////////////////////////////
-// ENT initiateRopstenMANATransactionButton
+// ENT initiateMutationButton
 ///////////////////////////////////////////////
 
 
 
-const initiateRopstenMANATransactionButton = new Entity()
+const initiateMutationButton = new Entity()
 
-initiateRopstenMANATransactionButton.addComponent(new Material())
-initiateRopstenMANATransactionButton.getComponent(Material).albedoColor = Color3.Blue()
+initiateMutationButton.addComponent(new Material())
+initiateMutationButton.getComponent(Material).albedoColor = Color3.Blue()
 
-initiateRopstenMANATransactionButton.addComponent(new BoxShape())
-initiateRopstenMANATransactionButton.addComponent(new OnClick( e => {
-  initiateRopstenMANATransaction()
+initiateMutationButton.addComponent(new BoxShape())
+initiateMutationButton.addComponent(new OnClick( e => {
+  mutatePolygonEmergentEngineInstance()
 }))
 
 let writeTransactionButtonTransform = new Transform({
@@ -103,9 +114,9 @@ let writeTransactionButtonTransform = new Transform({
   scale: new Vector3(1, 1, 1),
 })
 
-initiateRopstenMANATransactionButton.addComponent(writeTransactionButtonTransform)
+initiateMutationButton.addComponent(writeTransactionButtonTransform)
   
-engine.addEntity(initiateRopstenMANATransactionButton)
+engine.addEntity(initiateMutationButton)
 
 
 ///////////////////////////////////////////////
@@ -127,7 +138,7 @@ entity.addComponent(myTextParent);
 
 // Create a transform for the parent
 let parentTransform = new Transform({
-    position: new Vector3(8.5, 1, 8.5),
+    position: new Vector3(8.5, 3, 8.5),
     scale: new Vector3(0.625, 0.625, 0.625),
 })
 
@@ -139,6 +150,40 @@ entity.addComponent(parentTransform)
 
 // Add entities to the engine
 engine.addEntity(entity)
+
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+
+
+
+
+///////////////////////////////////////////////
+// ENT entity2 (getPosinaughtUsingCryptonautDelta(address _cryptonaut) function render)
+///////////////////////////////////////////////
+
+
+// Create entities
+const entity2 = new Entity()
+
+const myTextParent2 = new TextShape("UNINITIALIZED_EEI_RENDER");
+entity2.addComponent(myTextParent2);
+
+// Create a transform for the parent
+let parentTransform2 = new Transform({
+    position: new Vector3(8.5, 1.25, 8.5),
+    scale: new Vector3(0.75, 0.75, 0.75),
+})
+
+myTextParent2.fontSize = 12
+myTextParent2.color = Color3.Blue()
+myTextParent2.font = new Font(Fonts.LiberationSans)
+
+entity2.addComponent(parentTransform2)
+
+// Add entities to the engine
+engine.addEntity(entity2)
 
 
 ///////////////////////////////////////////////
@@ -187,7 +232,9 @@ class ContractStateRenderSystem {
       
       try {
 
-        // Do some first task asynchronously here
+        // Get the global variable state for emergentEngineInstanceButtonState and update the connected entity
+
+        entity2.getComponent(TextShape).value = emergentEngineInstanceButtonState.toString()
 
       } catch (error) {
 
@@ -221,21 +268,55 @@ class ContractStateRenderSystem {
     //
 
     executeTask(async () => {
-      
+
       try {
+    
+        // Define contract address constants
+        // https://mumbai.polygonscan.com/address/0xfd0a1d32683080249F7dbB00b2FFE2140404215A
+        const POLYGON_EMERGENT_ENGINE_INSTANCE_ADDRESS = "0xfd0a1d32683080249F7dbB00b2FFE2140404215A"
+    
+        // Setup steps explained in the section above
+        //
+        const provider = await getProvider()
+        //const provider = givenProvider()
+        if (provider == null) {
+          log("Provider (provider) is null in executeTask(...)")
+        }
+        //
+        const requestManager = new RequestManager(provider)
+        const factory = new ContractFactory(requestManager, abi)
+        const contract = (await factory.at(
+          POLYGON_EMERGENT_ENGINE_INSTANCE_ADDRESS
+        )) as any
+        const playerAddress = await getUserAccount()
+        log("Player address (playerAddress): ", playerAddress)
+    
+        // Perform a function from the contract
+        const res = await contract.getPosinaughtUsingCryptonautDelta(
+          // _cryptonaut (address) parameter
+          playerAddress,
+          // transaction-specific metadata
+          {
+            // address originating the transaction
+            from: playerAddress,
+          }
+        )
 
-        // Do some second task asynchronously here
-
+        log("res: " + res)
+        emergentEngineInstanceButtonState = res
+    
+        // Log response
+        log("Response (res): ", res)
+    
       } catch (error) {
-
+        
         let errorMessage = "Failed to do something exceptional... failure to launch :`("
         if (error instanceof Error) {
           errorMessage = error.message
         }
         log(errorMessage)
-
+      
       }
-
     })
     
     // Log postamble data after leaving second async task
