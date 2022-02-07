@@ -158,6 +158,10 @@ contract EmergentEngineInstance is Ownable, Pausable, ReentrancyGuard {
   // Metaverse engine storage retrieval functions follow
   //
 
+  //
+  // Engine metadata retrieval
+  //
+
   function getVersion () pure public returns (uint) {
     return version;
   }
@@ -167,26 +171,22 @@ contract EmergentEngineInstance is Ownable, Pausable, ReentrancyGuard {
   }
 
   //
-  // Metaverse engine storage mutation functions follow
-  //
-
-  //
   // 'cryptonautPosinaughtTransformations' retrieval
   //
 
-  function getPosinaughtFromCryptonautAlpha (address _cryptonaut) view public returns (uint) {
+  function getPosinaughtUsingCryptonautAlpha (address _cryptonaut) view public returns (uint) {
     return cryptonautPosinaughtTransformationAlpha[_cryptonaut];
   }
 
-  function getPosinaughtFromCryptonautBeta (address _cryptonaut) view public returns (uint) {
+  function getPosinaughtUsingCryptonautBeta (address _cryptonaut) view public returns (uint) {
     return cryptonautPosinaughtTransformationBeta[_cryptonaut];
   }
 
-  function getPosinaughtFromCryptonautGamma (address _cryptonaut) view public returns (uint) {
+  function getPosinaughtUsingCryptonautGamma (address _cryptonaut) view public returns (uint) {
     return cryptonautPosinaughtTransformationGamma[_cryptonaut];
   }
 
-  function getPosinaughtFromCryptonautDelta (address _cryptonaut) view public returns (uint) {
+  function getPosinaughtUsingCryptonautDelta (address _cryptonaut) view public returns (uint) {
     return cryptonautPosinaughtTransformationDelta[_cryptonaut];
   }
 
@@ -194,20 +194,72 @@ contract EmergentEngineInstance is Ownable, Pausable, ReentrancyGuard {
   // 'posinaughtCryptonautTransformations' retrieval
   //
 
-  function getCryptonautFromPosinaughtAlpha (uint _posinaut) view public returns (address) {
+  function getCryptonautUsingPosinaughtAlpha (uint _posinaut) view public returns (address) {
     return posinaughtCryptonautTransformationAlpha[_posinaut];
   }
 
-  function getCryptonautFromPosinaughtBeta (uint _posinaut) view public returns (address) {
+  function getCryptonautUsingPosinaughtBeta (uint _posinaut) view public returns (address) {
     return posinaughtCryptonautTransformationAlpha[_posinaut];
   }
 
-  function getCryptonautFromPosinaughtGamma (uint _posinaut) view public returns (address) {
+  function getCryptonautUsingPosinaughtGamma (uint _posinaut) view public returns (address) {
     return posinaughtCryptonautTransformationAlpha[_posinaut];
   }
 
-  function getCryptonautFromPosinaughtDelta (uint _posinaut) view public returns (address) {
+  function getCryptonautUsingPosinaughtDelta (uint _posinaut) view public returns (address) {
     return posinaughtCryptonautTransformationAlpha[_posinaut];
+  }
+
+  //
+  // Metaverse engine storage mutation functions follow
+  //
+
+  //
+  // 'cryptonautPosinaughtTransformations' mutation
+  //
+
+  function setPosinaughtUsingCryptonautAlpha (address _cryptonaut, uint _newPosinaut) public returns (uint) {
+    cryptonautPosinaughtTransformationAlpha[_cryptonaut] = _newPosinaut;
+    return _newPosinaut;
+  }
+
+  function setPosinaughtUsingCryptonautBeta (address _cryptonaut, uint _newPosinaut) public returns (uint) {
+    cryptonautPosinaughtTransformationBeta[_cryptonaut] = _newPosinaut;
+    return _newPosinaut;
+  }
+
+  function setPosinaughtUsingCryptonautGamma (address _cryptonaut, uint _newPosinaut) public returns (uint) {
+    cryptonautPosinaughtTransformationGamma[_cryptonaut] = _newPosinaut;
+    return _newPosinaut;
+  }
+
+  function setPosinaughtUsingCryptonautDelta (address _cryptonaut, uint _newPosinaut) public returns (uint) {
+    cryptonautPosinaughtTransformationDelta[_cryptonaut] = _newPosinaut;
+    return _newPosinaut;
+  }
+
+  //
+  // 'posinaughtCryptonautTransformations' mutation
+  //
+
+  function setCryptonautUsingPosinaughtAlpha (uint _posinaut, address _newCryptonaut) public returns (address) {
+    posinaughtCryptonautTransformationAlpha[_posinaut] = _newCryptonaut;
+    return _newCryptonaut;
+  }
+
+  function setCryptonautUsingPosinaughtBeta (uint _posinaut, address _newCryptonaut) public returns (address) {
+    posinaughtCryptonautTransformationBeta[_posinaut] = _newCryptonaut;
+    return _newCryptonaut;
+  }
+
+  function setCryptonautUsingPosinaughtGamma (uint _posinaut, address _newCryptonaut) public returns (address) {
+    posinaughtCryptonautTransformationGamma[_posinaut] = _newCryptonaut;
+    return _newCryptonaut;
+  }
+
+  function setCryptonautUsingPosinaughtDelta (uint _posinaut, address _newCryptonaut) public returns (address) {
+    posinaughtCryptonautTransformationDelta[_posinaut] = _newCryptonaut;
+    return _newCryptonaut;
   }
 
   
